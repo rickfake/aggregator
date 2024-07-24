@@ -15,6 +15,7 @@ env:
 
   # github access token
   GIST_PAT: ${{ secrets.GIST_PAT }}
+  GH_TOKEN: ${{ secrets.GIST_PAT }}
 
   # github username and gist id, separated by '/'
   GIST_LINK: ${{ secrets.GIST_LINK }}
@@ -66,7 +67,7 @@ jobs:
 
       - name: Collect
         env:
-           GH_TOKEN: ${{secrets.PAT}}
+           GH_TOKEN: ${{ secrets.GIST_PAT }}
         run: |
            python -u subscribe/collect.py --all --overwrite --skip
            cd data
