@@ -65,13 +65,9 @@ jobs:
           fi
 
       - name: Collect
-        run: python -u subscribe/collect.py --all --overwrite --skip
-        
-      - name: Create/Update Gist
-        env:
-           GH_TOKEN: ${{secrets.PAT}}
         run: |
-           cd aggregate
+           python -u subscribe/collect.py --all --overwrite --skip
+           cd data
            gh gist edit ${{ secrets.GIST_ID2 }} --add "proxies.yaml"
            gh gist edit ${{ secrets.GIST_ID2 }} --add "subscribes.txt"
            gh gist edit ${{ secrets.GIST_ID2 }} --add "domains.txt"
