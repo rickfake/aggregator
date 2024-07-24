@@ -65,6 +65,8 @@ jobs:
           fi
 
       - name: Collect
+        env:
+           GH_TOKEN: ${{secrets.PAT}}
         run: |
            python -u subscribe/collect.py --all --overwrite --skip
            cd data
