@@ -1,5 +1,3 @@
 PyYAML
 tqdm
 geoip2
-http.client
-json
