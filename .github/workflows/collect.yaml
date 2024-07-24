@@ -66,6 +66,16 @@ jobs:
 
       - name: Collect
         run: python -u subscribe/collect.py --all --overwrite --skip
+        
+      - name: Create/Update Gist
+        env:
+           GH_TOKEN: ${{secrets.PAT}}
+        run: |
+           cd aggregate
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "proxies.yaml"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "subscribes.txt"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "domains.txt"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "valid-domains.txt"
 
       - name: Timestamp
         run: date
