@@ -311,8 +311,7 @@ def aggregate(args: argparse.Namespace) -> None:
 
     rick_nodes = nodes
     rick_file = "rick_nodes.txt"
-    utils.write_file(filename=os.path.join(DATA_BASE, rick_file), lines=rick_nodes)
-
+    
     # 如果文件夹不存在则创建
     os.makedirs(DATA_BASE, exist_ok=True)
 
@@ -384,6 +383,8 @@ def aggregate(args: argparse.Namespace) -> None:
 
     # 保存实际可使用的网站列表
     utils.write_file(filename=os.path.join(DATA_BASE, "valid-domains.txt"), lines=list(set(domains)))
+    rick_nodes = [str(rick_nodes) for rick_nodes in rick_nodes]
+    utils.write_file(filename=os.path.join(DATA_BASE, rick_file), lines=rick_nodes)
 
     # 如有必要，上传至 Gist
     if gist_id and access_token:
