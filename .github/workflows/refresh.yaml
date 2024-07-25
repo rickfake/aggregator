@@ -15,6 +15,7 @@ env:
 
   # github access token
   GIST_PAT: ${{ secrets.GIST_PAT }}
+  GH_TOKEN: ${{ secrets.GIST_PAT }}
 
   # github username and gist id, separated by '/'
   GIST_LINK: ${{ secrets.GIST_LINK }}
@@ -65,7 +66,15 @@ jobs:
           fi
 
       - name: Refresh
-        run: python -u subscribe/collect.py --all --refresh --overwrite --skip
+        env:
+           GH_TOKEN: ${{ secrets.GIST_PAT }}
+        run: |
+           python -u subscribe/collect.py --all --refresh --overwrite --skip
+           cd data
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "subscribes.txt"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "domains.txt"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "valid-domains.txt"
+           gh gist edit ${{ secrets.GIST_ID2 }} --add "rick_nodes.txt"  
 
       - name: Timestamp
         run: date
