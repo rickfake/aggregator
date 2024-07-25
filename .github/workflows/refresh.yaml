@@ -72,8 +72,6 @@ jobs:
            python -u subscribe/collect.py --all --refresh --overwrite --skip
            cd data
            gh gist edit ${{ secrets.GIST_ID2 }} --add "subscribes.txt"
-           gh gist edit ${{ secrets.GIST_ID2 }} --add "domains.txt"
-           gh gist edit ${{ secrets.GIST_ID2 }} --add "valid-domains.txt"
            gh gist edit ${{ secrets.GIST_ID2 }} --add "rick_nodes.txt"  
 
       - name: Timestamp
