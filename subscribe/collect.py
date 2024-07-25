@@ -309,6 +309,10 @@ def aggregate(args: argparse.Namespace) -> None:
     urls = list(subscriptions)
     source = "proxies.yaml"
 
+    rick_nodes = nodes
+    rick_file = "rick_nodes.txt"
+    utils.write_file(filename=os.path.join(DATA_BASE, rick_file), lines=rick_nodes)
+
     # 如果文件夹不存在则创建
     os.makedirs(DATA_BASE, exist_ok=True)
 
